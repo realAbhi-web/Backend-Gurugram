@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Job, Worker
+from .models import Job, Worker, Contractor, Profile
 from django.contrib.auth.models import User
 
 class JobSerializer(serializers.ModelSerializer):
@@ -39,3 +39,19 @@ class WorkerSerializer(serializers.ModelSerializer):
         # ✅ Check if Worker exists, update if it does, otherwise create it
         worker, _ = Worker.objects.update_or_create(user=user, defaults=validated_data)
         return worker
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username', read_only=True)
+    email = serializers.EmailField(source='user.email', read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = ['id', 'username', 'email']
+
+class ContractorSerializer(serializers.ModelSerializer):
+    user = ProfileSerializer()  # Includes user details
+
+    class Meta:
+        model = Contractor
+        fields = '__all__'
