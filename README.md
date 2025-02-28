@@ -104,31 +104,35 @@ Send a JSON payload containing the required fields:
 
 ```json
 {
-  "username": "example_user",
-  "email": "user@example.com",
-  "password": "securepassword",
-  "is_contractor": true
+    "username": "Ritu",
+    "password": "The biggest heavyweight tits champion",
+    "role": "contractor",
+    "skills": "Always higher",
+    "hourly_rate": "50.00",
+    "location": "New York"
 }
 ```
 
 - `username` (string, required): Unique username for the user.
-- `email` (string, required): Email address of the user.
-- `password` (string, required): Secure password for authentication.
-- `is_contractor` (boolean, optional): If `true`, the user is registered as a contractor; otherwise, they are a regular user.
+- `password` (string, required): Secure password for authentication
+- `role` (string, required): Can either be 'user' or 'contractor'.
 
 #### **Response:**
 On success, returns a JSON object with the created user details.
 
 ```json
 {
-  "id": 1,
-  "username": "example_user",
-  "email": "user@example.com",
-  "is_contractor": true
+    "message": "User Ritu343 registered as contractor."
 }
 ```
 
 On error (e.g., missing fields or duplicate username), a relevant error message is returned.
+```json
+{
+   "error": "Username, password, and role are required.
+}
+```
+
 
 ---
 
@@ -138,7 +142,7 @@ On error (e.g., missing fields or duplicate username), a relevant error message 
 GET /jobs/api/users/
 ```
 #### **Description:**
-This endpoint retrieves a list of all registered users in the system, including both **workers** and **contractors**.
+This endpoint retrieves a list of all registered users in the system.
 
 #### **Response:**
 Returns a JSON array of user objects.
