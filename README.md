@@ -91,6 +91,103 @@ The backend will be running at `http://127.0.0.1:8000/`
     }
     ```
 
+### 1. **User & Contractor Registration**
+#### **Endpoint:**
+```
+POST /jobs/api/register/
+```
+#### **Description:**
+This endpoint allows the creation of a new **User** or **Contractor** by providing the necessary details.
+
+#### **Request Body:**
+Send a JSON payload containing the required fields:
+
+```json
+{
+  "username": "example_user",
+  "email": "user@example.com",
+  "password": "securepassword",
+  "is_contractor": true
+}
+```
+
+- `username` (string, required): Unique username for the user.
+- `email` (string, required): Email address of the user.
+- `password` (string, required): Secure password for authentication.
+- `is_contractor` (boolean, optional): If `true`, the user is registered as a contractor; otherwise, they are a regular user.
+
+#### **Response:**
+On success, returns a JSON object with the created user details.
+
+```json
+{
+  "id": 1,
+  "username": "example_user",
+  "email": "user@example.com",
+  "is_contractor": true
+}
+```
+
+On error (e.g., missing fields or duplicate username), a relevant error message is returned.
+
+---
+
+### 2. **Retrieve All Users**
+#### **Endpoint:**
+```
+GET /jobs/api/users/
+```
+#### **Description:**
+This endpoint retrieves a list of all registered users in the system, including both **workers** and **contractors**.
+
+#### **Response:**
+Returns a JSON array of user objects.
+
+```json
+[
+  {
+    "id": 1,
+    "username": "example_user",
+    "email": "user@example.com"
+  },
+  {
+    "id": 2,
+    "username": "another_user",
+    "email": "another@example.com"
+  }
+]
+```
+
+---
+
+### 3. **Retrieve All Contractors**
+#### **Endpoint:**
+```
+GET /jobs/api/contractors/
+```
+#### **Description:**
+Fetches a list of all registered **contractors** in the system.
+
+#### **Response:**
+Returns a JSON array of contractor profiles.
+
+```json
+[
+  {
+    "id": 1,
+    "username": "contractor_1",
+    "email": "contractor1@example.com"
+  },
+  {
+    "id": 2,
+    "username": "contractor_2",
+    "email": "contractor2@example.com"
+  }
+]
+```
+
+---
+
 ### Authentication
 No authentication or tokens are required for accessing these APIs.
 
