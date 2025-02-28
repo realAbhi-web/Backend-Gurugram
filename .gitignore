@@ -1,0 +1,15 @@
+# Ignore database and migrations
+db.sqlite3
+*.pyc
+__pycache__/
+
+# Ignore environment variables
+.env
+
+# Ignore Django static and media files
+/static/
+/media/
+
+# Ignore VSCode and system files
+.vscode/
+.DS_Store
